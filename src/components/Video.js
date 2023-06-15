@@ -1,0 +1,25 @@
+import React from 'react'
+import './Video.css'
+import { Link } from 'react-router-dom'
+
+import spaceVideo from '../assets/space4.mp4'
+
+const Video = () => {
+  return (
+    <div className='hero'>
+        <video autoPlay loop muted id='video'>
+            <source src={spaceVideo} type='video/mp4' />
+        </video>
+        <div className="content">
+            <h1>Multi Hogar MH</h1>
+            <p>Lo mejor lo encuestras aquí!</p>
+            <div>
+                <Link to='/precio' className='btn'>Precio</Link>
+                <Link to='/registro' className='btn btn-light'>Registrarse</Link>
+            </div>
+        </div> 
+    </div>
+  )
+}
+
+export default Video
