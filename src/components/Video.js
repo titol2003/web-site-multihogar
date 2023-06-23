@@ -2,7 +2,7 @@ import React from 'react'
 import './Video.css'
 import { Link } from 'react-router-dom'
 
-import spaceVideo from '../assets/space4.mp4'
+import spaceVideo from '../assets/ImagesHome/space4.mp4'
 
 const Video = () => {
   return (
@@ -12,7 +12,7 @@ const Video = () => {
         </video>
         <div className="content">
             <h1>Multi Hogar MH</h1>
-            <p>Lo mejor lo encuestras aquí!</p>
+            <p>Tu vivienda a un Click de distancia!</p>
             <div>
                 <Link to='/precio' className='btn'>Precio</Link>
                 <Link to='/registro' className='btn btn-light'>Registrarse</Link>

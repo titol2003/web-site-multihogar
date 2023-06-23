@@ -1,9 +1,9 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "./routes/Home";
-import Mercado from "./routes/Mercado";
-import Nosotros from "./routes/Nosotros";
-import Register from "./routes/Register";
+import Home from "./pages/Home";
+import Mercado from "./pages/Mercado";
+import Nosotros from "./pages/Nosotros";
+import Register from "./pages/Register";
 
 function App() {
   return (
@@ -19,3 +19,4 @@ function App() {
 }
 
 export default App;
+
