@@ -15,8 +15,8 @@ const Nosotros = () => {
         
         <div className='left'>
             <h1>Nosotros</h1>
-            <p>Consigue la casa de tus sueños!</p>
-            <Link to='/registro'><button className='btn'>REGISTRARSE</button></Link>
+            <p>¡Únete a nuestro equipo y descubre una oportunidad única para publicar inmuebles. Te ofrecemos la plataforma perfecta para mostrar tu experiencia y convertirte en un destacado agente inmobiliario.</p>
+            <Link to='/registro'><button className='btn-un'>UNETE A NUESTRO EQUIPO</button></Link>
         </div>
         
         <div className='right'>

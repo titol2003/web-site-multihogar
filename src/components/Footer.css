@@ -51,6 +51,13 @@
     padding-top: 0;
 }
 
+.btn-un {
+    background-color: blueviolet;
+    border-radius: 20px;
+    padding: 10px;
+    font-family:'Times New Roman', Times, serif;
+}
+
 @media screen and (max-width:640px) {
     .footer-container{
         grid-template-columns: 1fr;

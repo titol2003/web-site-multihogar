@@ -14,7 +14,6 @@ const Video = () => {
             <h1>Multi Hogar MH</h1>
             <p>Tu vivienda a un Click de distancia!</p>
             <div>
-                <Link to='/precio' className='btn'>Precio</Link>
                 <Link to='/registro' className='btn btn-light'>Registrarse</Link>
             </div>
         </div> 
