@@ -11,9 +11,7 @@ const Form = () => {
             <input type="text"></input>
             <label>Telefono</label>
             <input type="text"></input>
-            <label>Detalles</label>
-            <textarea rows='6' placeholder='Mensaje corto aqui' />
-            <button className='btn'>Enviar</button>
+            <button className='btn'>REGISTRARSE</button>
         </form>
     </div>
   )
