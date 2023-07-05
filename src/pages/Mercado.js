@@ -10,6 +10,8 @@ const Mercado = () => {
     <div>
         <Navbar/>
         <HeroImagen heading='PRECIO' text='Elige que plan te conviene.'/>
+        <br />
+        <br />
         <MercadoCards />
         <Footer/>
     </div>

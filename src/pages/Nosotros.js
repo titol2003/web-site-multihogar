@@ -14,6 +14,9 @@ const Nosotros = () => {
     <div>
         <Navbar />
         <HeroImagen heading='NOSOTROS' text='MultiHogar cumple tu espectativas.' />
+        <br />
+        <br />
+        <br />
         <Accordion/>
         <NosotrosSection />
         <Carousel/>

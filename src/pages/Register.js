@@ -9,6 +9,7 @@ const Register = () => {
     <div>
         <Navbar />
         <HeroImagen heading='REGISTRO.' text='Registrate y encuentra las mejores ofertas'/>
+        <br />
         <Form />
         <Footer />
     </div>
