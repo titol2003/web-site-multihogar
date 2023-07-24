@@ -22,6 +22,8 @@ body {
   background: #000000;
 }
 
+
+
 ul{
   list-style-type: none;
 }
@@ -97,6 +99,43 @@ code {
 
 .btnnc:hover{
   background:  blueviolet;
+}
+
+.btnncrud {
+  margin: 10px;
+  border-radius: 20%;
+  padding: 30px 32px;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  background: transparent;
+  color: #fff;
+  border: 1px solid  blueviolet;
+  cursor: pointer;
+}
+
+.btnncrud:hover{
+  background:  rgb(226, 43, 43);
+}
+
+.btnncrudE {
+  margin: 10px;
+  border-radius: 20%;
+  padding: 30px 32px;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  background: transparent;
+  color: #fff;
+  border: 1px solid  blueviolet;
+  cursor: pointer;
+}
+
+.btnncrudE:hover{
+  background:  rgb(43, 104, 226);
+}
+
+/*Letra del ModalUser*/
+.Le{
+  color: #000000;
 }
 
 
