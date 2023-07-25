@@ -9,7 +9,7 @@ const Navbar = () => {
 
 
 
-  return (
+return (
     <div className='header'>
         <Link to='/'><h1>Multi Hogar </h1></Link>
         <ul className={click ? 'nav-menu active' : 'nav-menu'}>
@@ -32,7 +32,7 @@ const Navbar = () => {
             
         </div>
     </div>
-  )
+)
 }
 
 export default Navbar
