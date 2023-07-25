@@ -22,7 +22,7 @@ const Navbar = () => {
                 <Link to='/agenteInmueble'>INMUEBLES</Link>
             </li>
             <li>
-                <Link to='/precio'>PUBLICAR</Link>
+                <Link to='/publicar'>PUBLICAR</Link>
             </li>
             <li>
                 <Link to='/nosotros'>AGENTES</Link>
