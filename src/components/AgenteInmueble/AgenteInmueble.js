@@ -1,15 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {Row, Col} from 'react-bootstrap';
 import CarouselId from '../Carousel/CarouselId';
-import ModalUser from './ModalUser';
 
 
-const InmuebleDescript = () => {
 
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+const AgenteInmueble = () => {
 
   return (
     <div >
@@ -34,7 +29,7 @@ const InmuebleDescript = () => {
                                 </div>
                             </div>
                         </div>
-                        <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                            <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                 <li className="nav-item" role="presentation">
                                     <button className="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true"><i className="bi bi-textarea"></i> <br />Area</button>
                                 </li>
@@ -77,13 +72,8 @@ const InmuebleDescript = () => {
                         <div>
                             <ul className="pagination">
                                 <button className='btnn mr-1'><li className="page-item">Precio: <br /> 250.500.000</li></button>
-                              
-                                <button className='btnnc' onClick={handleShow}>
-                                    <li className="page-item">
-                                        Contactenos!
-                                    </li>
-                                </button>
-                              
+                                <button className='btnncrud mr-1'><li className="page-item">Eiminar </li></button>
+                                <button className='btnncrudE mr-1'><li className="page-item">Editar </li></button>
                             </ul>
                         </div> 
                     </Col>
@@ -91,9 +81,8 @@ const InmuebleDescript = () => {
             </div>
         </main>
         <br />
-        <ModalUser show={show} handleClose={handleClose}/>
     </div>
   )
 }
 
-export default InmuebleDescript
+export default AgenteInmueble

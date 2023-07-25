@@ -6,6 +6,8 @@ import Nosotros from "./pages/Nosotros";
 import Register from "./pages/Register";
 import PublicarInmueble from "./components/PublicarInmueble/PublicarInmueble";
 import Description from "./pages/Description";
+import Agente from './pages/Agente'
+import AgenteDescription from "./pages/AgenteDescription";
 
 function App() {
   return (
@@ -17,6 +19,9 @@ function App() {
         <Route path='/registro' element={<Register />} />
         <Route path='/publicar' element={<PublicarInmueble />} />
         <Route path='/description' element={<Description />} />
+        <Route path='/agente' element={<Agente/>} />
+        <Route path='/agenteDescript' element={<AgenteDescription/>} />
+
       </Routes>
     </>
   );
