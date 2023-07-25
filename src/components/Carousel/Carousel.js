@@ -8,6 +8,10 @@ const Carousel = () => {
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide 6"></button>
+
                 </div>
                 <div className="carousel-inner">
                     <div className="carousel-item active">
@@ -18,6 +22,15 @@ const Carousel = () => {
                     </div>
                     <div className="carousel-item">
                         <img src="./ImagesSlider/slider3.jpg" className="d-block mx-auto w-80" alt="..." />
+                    </div>
+                    <div className="carousel-item">
+                        <img src="./ImagesSlider/slider4.jpg" className="d-block mx-auto w-80" alt="..." />
+                    </div>
+                    <div className="carousel-item">
+                        <img src="./ImagesSlider/slider5.jpg" className="d-block mx-auto w-80" alt="..." />
+                    </div>
+                    <div className="carousel-item">
+                        <img src="./ImagesSlider/slider6.jpg" className="d-block mx-auto w-80" alt="..." />
                     </div>
                 </div>
                 <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
