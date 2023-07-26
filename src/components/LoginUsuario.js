@@ -12,22 +12,13 @@ import { useState } from "react";
     
     e.preventDefault();
     alert("Todo los campos son obligatorios");
-  
-   
-    
-    
+
   }
 
-  
-  
-    
-  
 
 return ( 
     
     <div>
-      <h1 className="" style={{color:"white"}}>Multi Hogar</h1>
-      
       <Form onSubmit={(e)=>handleSubmit(e)}>
         
         <Form.Group controlId="formBasicEmail">
@@ -62,17 +53,11 @@ return (
         >
           Iniciar Sesion
         </Button>
-
+        <br />
         <Button>
         !Quiero Registrarme!
-            
-        
-
-        </Button>
-        
+        </Button> 
       </Form>
-      
-     
     </div>
     
   );
