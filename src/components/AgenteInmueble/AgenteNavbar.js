@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import {FaBars, FaTimes} from 'react-icons/fa'
-import './Navbar.css'
+import './AgenteNavbar.css'
 
 const Navbar = () => {
     const[click, setClick] = useState(false)
@@ -9,21 +9,23 @@ const Navbar = () => {
 
 
 
-return (
+  return (
     <div className='header'>
         <Link to='/'><h1>Multi Hogar </h1></Link>
+        <div>
+            <picture>
+            
+            </picture>
+        </div>
         <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             <li>
-                <Link to='/'>INICIO</Link>
+                <Link to='/inmuebles'>INMUEBLES</Link>
             </li>
             <li>
-                <Link to='/precio'>INMUEBLES</Link>
+                <Link to='/publicar'>PUBLICAR</Link>
             </li>
             <li>
-                <Link to='/nosotros'>NOSOTROS</Link>
-            </li>
-            <li>
-                <Link to='/registro'>REGISTRARSE</Link>
+                <Link to='/nosotros'>AGENTES</Link>
             </li>
         </ul>
         <div className='hamburger' onClick={handleClick}>
@@ -32,7 +34,7 @@ return (
             
         </div>
     </div>
-)
+  )
 }
 
 export default Navbar

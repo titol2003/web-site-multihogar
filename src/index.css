@@ -22,6 +22,8 @@ body {
   background: #000000;
 }
 
+
+
 ul{
   list-style-type: none;
 }
@@ -35,20 +37,107 @@ code {
     monospace;
 }
 
+/*BOTONES DEL PROGRAMA*/
+
 .btn{
   padding: 12px 32px;
   font-size: 1.2rem;
   text-transform: uppercase;
   background: transparent;
   color: #fff;
-  border: 1px solid #fff;
+  border: 1px solid  blueviolet;
   cursor: pointer;
 }
 
 .btn-light{
-  background: rgba(225,255,255, .2);
+  background:  blueviolet;
 }
 
 .btn:hover{
-  background: rgba(225,255,255, .2);
+  background:  blueviolet;
 }
+
+/*BOTON DISEÑO PRECIO*/
+
+.btnn{
+  margin: 10px;
+  border-radius: 20%;
+  padding: 12px 32px;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  background: transparent;
+  color: #fff;
+  border: 1px solid  blueviolet;
+  cursor: pointer;
+}
+
+.btnn-light{
+  background:  blueviolet;
+}
+
+.btnn:hover{
+  background:  blueviolet;
+}
+
+/*BOTON CONTACTENOS*/
+
+.btnnc{
+  margin: 10px;
+  border-radius: 20%;
+  padding: 30px 32px;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  background: transparent;
+  color: #fff;
+  border: 1px solid  blueviolet;
+  cursor: pointer;
+}
+
+.btnnc-light{
+  background:  blueviolet;
+}
+
+.btnnc:hover{
+  background:  blueviolet;
+}
+
+.btnncrud {
+  margin: 10px;
+  border-radius: 20%;
+  padding: 30px 32px;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  background: transparent;
+  color: #fff;
+  border: 1px solid  blueviolet;
+  cursor: pointer;
+}
+
+.btnncrud:hover{
+  background:  rgb(226, 43, 43);
+}
+
+.btnncrudE {
+  margin: 10px;
+  border-radius: 20%;
+  padding: 30px 32px;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  background: transparent;
+  color: #fff;
+  border: 1px solid  blueviolet;
+  cursor: pointer;
+}
+
+.btnncrudE:hover{
+  background:  rgb(43, 104, 226);
+}
+
+/*Letra del ModalUser*/
+.Le{
+  color: #000000;
+}
+
+
+
+
