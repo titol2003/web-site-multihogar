@@ -1,8 +1,9 @@
 import { Form, Button } from "react-bootstrap";
 import "./Login.css"  
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
- function LoginUsuario() {
+function LoginUsuario() {
   
   const [usuario, setUsuario] = useState("");
   const [contraseña, setContraseña] = useState("");
@@ -22,7 +23,7 @@ return (
       <Form onSubmit={(e)=>handleSubmit(e)}>
         
         <Form.Group controlId="formBasicEmail">
-          <h2 className=""style={{color:"white"}} >Iniciar Sesion</h2>
+          <h2 className=""style={{color:"white"}} >Iniciar Sesión</h2>
           <Form.Label>Usuario</Form.Label>
           <Form.Control
             type=" usuario"
@@ -45,18 +46,22 @@ return (
           />
         </Form.Group>
 
-        
-        <Button
-          variant="primary"
-          type="Todo los campos son obligatorios"
-          onClick={(e) => handleSubmit(e)}
-        >
-          Iniciar Sesion
-        </Button>
+        <Link>
+          <Button
+            className="btnRegistro"
+            variant="primary"
+            type="Todo los campos son obligatorios"
+            onClick={(e) => handleSubmit(e)}
+          >
+            Iniciar Sesión
+          </Button>
+        </Link>
         <br />
-        <Button>
-        !Quiero Registrarme!
-        </Button> 
+        <Link to='/registro'>
+          <Button className="btnRegistro">
+            !Quiero Registrarme!
+          </Button>
+        </Link>
       </Form>
     </div>
     
