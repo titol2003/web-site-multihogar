@@ -8,6 +8,7 @@ import PublicarInmueble from "./components/PublicarInmueble/PublicarInmueble";
 import Description from "./pages/Description";
 import Agente from './pages/Agente'
 import AgenteDescription from "./pages/AgenteDescription";
+import AgentesBase from "./pages/AgentesBase";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path='/description' element={<Description />} />
         <Route path='/agente' element={<Agente/>} />
         <Route path='/agenteDescript' element={<AgenteDescription/>} />
+        <Route path='/agentes' element={<AgentesBase/>} />
 
       </Routes>
     </>
