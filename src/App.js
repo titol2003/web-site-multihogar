@@ -8,8 +8,10 @@ import LoginUsuario from "./pages/Login";
 import Description from "./pages/Description";
 import Agente from './pages/Agente'
 import AgenteDescription from "./pages/AgenteDescription";
+import AgentesBase from "./pages/AgentesBase";
 import Publicar from "./pages/Publicar";
 import MercanciaAgente from "./pages/AgenteMercado";
+
 
 function App() {
   return (
@@ -25,6 +27,7 @@ function App() {
         <Route path='/precioAgente' element={<MercanciaAgente />} />
         <Route path='/inmuebles/:id' element={<Agente/>} />
         <Route path='/agenteDescript' element={<AgenteDescription/>} />
+        <Route path='/agentes' element={<AgentesBase/>} />
       </Routes>
     </>
   );
