@@ -9,6 +9,7 @@ import Description from "./pages/Description";
 import Agente from './pages/Agente'
 import AgenteDescription from "./pages/AgenteDescription";
 import Publicar from "./pages/Publicar";
+import MercanciaAgente from "./pages/AgenteMercado";
 
 function App() {
   return (
@@ -16,14 +17,14 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/precio' element={<Mercado />} />
+        <Route path='/description/:id' element={<Description />} />
         <Route path='/nosotros' element={<Nosotros />} />
         <Route path='/registro' element={<Register />} />
         <Route path='/login' element={<LoginUsuario />} />
         <Route path='/publicar' element={<Publicar />} />
-        <Route path='/description' element={<Description />} />
-        <Route path='/inmuebles' element={<Agente/>} />
+        <Route path='/precioAgente' element={<MercanciaAgente />} />
+        <Route path='/inmuebles/:id' element={<Agente/>} />
         <Route path='/agenteDescript' element={<AgenteDescription/>} />
-
       </Routes>
     </>
   );

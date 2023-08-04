@@ -1,6 +1,6 @@
 import React from 'react'
 import AgenteNavbar from '../components/AgenteInmueble/AgenteNavbar'
-import MercanciaAgente from '../components/AgenteInmueble/MercanciaAgente'
+import AgenteInmuebles from '../components/AgenteInmueble/AgenteInmueble';
 
 const Agente = () => {
   return (
@@ -11,7 +11,7 @@ const Agente = () => {
         <br />
         <br />
         <br />
-        <MercanciaAgente/>
+        <AgenteInmuebles/>
     </div>
   )
 }

@@ -19,7 +19,7 @@ const Navbar = () => {
         </div>
         <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             <li>
-                <Link to='/inmuebles'>INMUEBLES</Link>
+                <Link to='/precioAgente'>INMUEBLES</Link>
             </li>
             <li>
                 <Link to='/publicar'>PUBLICAR</Link>
