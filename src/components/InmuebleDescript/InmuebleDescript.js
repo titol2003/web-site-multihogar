@@ -1,32 +1,53 @@
-import React, { useState } from 'react';
+import React, { useEffect ,useState } from 'react';
 import {Row, Col} from 'react-bootstrap';
 import CarouselId from '../Carousel/CarouselId';
 import ModalUser from './ModalUser';
-import data from '../inmuebles.json';
+import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import Navbar from '../Navbar.js'
 
 
 const InmuebleDescript = () => {
 
-    const {id} = useParams();
+    const {id} = useParams()
+    console.log(id)
+    const [inmueble, setInmueble] = useState([])
+    const [error, setError] = useState(null)
 
-    const inmueble = data.inmuebles.find((inmueble) => inmueble.id == id);
-    console.log(inmueble);
+    useEffect(() => {
+        async function fetchInmueble() {
+          try {
+            const response = await axios.get(`http://localhost:8000/inmuebles/${id}`);
+            setInmueble(response.data);
+          } catch (error) {
+            setError(error.message);
+            console.error(error.message);
+          }
+        }
     
-    const [show, setShow] = useState(false);
+        fetchInmueble();
+    }, [id]);
 
+    const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
   return (
+    
     <div >
+    <Navbar/>
+        <br />
+        <br />
+        <br />
         {
-            inmueble ?
-                <main key={inmueble.id}>
+            error 
+                ? <p>{error}</p>
+                : <main key={inmueble.id}>
                     <div>
                         <Row className='px-4 my-5' sm={5}>
+                            
                             <Col sm={12} xl={6}>
-                            <CarouselId images={inmueble.carousel}/>
+                                <CarouselId images={inmueble.carousel}/>
                             </Col>
                             
                             <Col xs={10} sm={8} md={10} lg={6} xl={5}>
@@ -39,7 +60,7 @@ const InmuebleDescript = () => {
                                     </div>
                                     <div className="col-8"  >
                                         <div style={{textAlign:'justify'}} className="tab-content" id="nav-tabContent" color='primary'>
-                                        <div className="tab-pane fade show active"  id="list-home" role="tabpanel" aria-labelledby="list-home-list"><p>{inmueble.descripcion}</p></div>
+                                        <div className="tab-pane fade show active"  id="list-home" role="tabpanel" aria-labelledby="list-home-list"><p>{inmueble.description}</p></div>
                                         <div className="tab-pane fade"  id="list-settings" role="tabpanel" aria-labelledby="list-settings-list"><p>{inmueble.ventajas}</p></div>
                                         </div>
                                     </div>
@@ -99,7 +120,7 @@ const InmuebleDescript = () => {
                         </Row>
                     </div>
                 </main>
-            :<p>El inmueble no fue encontrado</p>
+          
         }
         <br />
         <ModalUser show={show} handleClose={handleClose}/>

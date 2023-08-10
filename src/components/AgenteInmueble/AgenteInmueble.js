@@ -1,31 +1,66 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Row, Col} from 'react-bootstrap';
 import CarouselId from '../Carousel/CarouselId';
-
-import data from '../inmuebles.json';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
+import AgenteNavbar from '../AgenteInmueble/AgenteNavbar'
 
 
 const AgenteInmueble = () => {
 
-    const {id} = useParams();
+    const {id} = useParams()
+    console.log(id)
+    const [inmueble, setInmueble] = useState([])
+    const [error, setError] = useState(null)
+    const navigate = useNavigate();
 
-    const inmueble = data.inmuebles.find((inmueble) => inmueble.id == id);
-    console.log(inmueble);
+    useEffect(() => {
+        async function fetchInmueble() {
+          try {
+            const response = await axios.get(`http://localhost:8000/inmuebles/${id}`);
+            setInmueble(response.data);
+          } catch (error) {
+            setError(error.message);
+            console.error(error.message);
+          }
+        }    
+        fetchInmueble();
+    }, [id]);
+
+    const handleDelete = async () => {
+        // Usar la función confirm para mostrar un mensaje al usuario
+        let confirmacion = window.confirm("¿Está seguro que quiere eliminar el inmueble?");
+        // Si el usuario acepta, se procede a eliminar el inmueble
+        if (confirmacion) {
+            try {
+                await axios.delete(`http://localhost:8000/inmuebles/${id}`);
+                navigate('/precioAgente'); // Redirige a la página de inicio o a donde desees después de eliminar
+            } catch (error) {
+                console.error(error.message);
+            }
+        }
+        // Si el usuario cancela, no se hace nada
+    };
     
-
+    
 
   return (
     <div >
+    <AgenteNavbar />
+        <br />
+        <br />
+        <br />
+        
         {
-            inmueble ?
-                <main key={inmueble.id}>
+            error 
+                ? <p>{error}</p>
+                : <main key={inmueble.id}>
                     <div>
                         <Row className='px-4 my-5' sm={5}>
-                            <Col sm={12} xl={6}>
-                            <CarouselId images={inmueble.carousel}/>
-                            </Col>
                             
+                            <Col sm={12} xl={6}>
+                                <CarouselId images={inmueble.carousel}/>
+                            </Col>
                             <Col xs={10} sm={8} md={10} lg={6} xl={5}>
                                 <div className="row">
                                     <div className="col-4">
@@ -36,7 +71,7 @@ const AgenteInmueble = () => {
                                     </div>
                                     <div className="col-8"  >
                                         <div style={{textAlign:'justify'}} className="tab-content" id="nav-tabContent" color='primary'>
-                                        <div className="tab-pane fade show active"  id="list-home" role="tabpanel" aria-labelledby="list-home-list"><p>{inmueble.descripcion}</p></div>
+                                        <div className="tab-pane fade show active"  id="list-home" role="tabpanel" aria-labelledby="list-home-list"><p>{inmueble.description}</p></div>
                                         <div className="tab-pane fade"  id="list-settings" role="tabpanel" aria-labelledby="list-settings-list"><p>{inmueble.ventajas}</p></div>
                                         </div>
                                     </div>
@@ -84,14 +119,26 @@ const AgenteInmueble = () => {
                                 <div>
                                     <ul className="pagination">
                                         <button className='btnn mr-1'><li className="page-item">Precio: <br />{inmueble.precio}</li></button>
+                                        <button className='btnn'><li className="page-item">Agente: <br />{inmueble.agentes}</li></button>
                                     
+                                        <button className='btnncrud' onClick={handleDelete} >
+                                            <li className="page-item">
+                                                Eliminar
+                                            </li>
+                                        </button>
+                                        <Link to={`/editar/${inmueble._id}`}>
+                                            <button className='btnncrudE' >
+                                                <li className="page-item">
+                                                    Editar
+                                                </li>
+                                            </button>
+                                        </Link>
                                     </ul>
                                 </div> 
                             </Col>
                         </Row>
                     </div>
                 </main>
-            :<p>El inmueble no fue encontrado</p>
         }
         <br />
     </div>

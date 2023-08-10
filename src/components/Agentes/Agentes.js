@@ -17,12 +17,12 @@ const Agentes = () => {
           />
 
           <figcaption className="datos">
-            <p className="nombre">
+            <div className="nombre">
               <h3>JENNY CAROLINA AVENDAÑO</h3>
-            </p>
-            <p className="telefono">
+            </div>
+            <div className="telefono">
               <h3>312 565 0978</h3>
-            </p>
+            </div>
           </figcaption>
         </figure>
 
@@ -34,12 +34,12 @@ const Agentes = () => {
             alt="..."/>
 
           <figcaption className="datos">
-            <p className="nombre">
+            <div className="nombre">
               <h3>JHONATAN CAMILO PAEZ</h3>
-            </p>
-            <p className="telefono">
+            </div>
+            <div className="telefono">
               <h3>323 456 7890</h3>
-            </p>
+            </div>
           </figcaption>
         </figure>
       </div>

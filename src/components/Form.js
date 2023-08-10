@@ -11,6 +11,8 @@ const Form = () => {
             <input type="text"></input>
             <label>Telefono</label>
             <input type="text"></input>
+            <label>Contraseña</label>
+            <input type="text"></input>
             <button className='btn'>REGISTRARSE</button>
         </form>
     </div>

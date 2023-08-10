@@ -1,24 +1,41 @@
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import data from './inmuebles.json';
+import {useState, useEffect} from 'react'
+import axios from 'axios'
+
+const URI = 'http://localhost:8000/inmuebles/'
 
 const Mercado = () => {
+
+  const [inmuebles, setInmueble] = useState([])
+    useEffect( ()=>{
+      getInmuebles()
+  },[])
+
+  const getInmuebles = async () => {
+    const res = await axios.get(URI)
+    setInmueble(res.data)
+  }
+
+  
+
+
   return (
     <>
       <Container>
         <Row>
-          {data.inmuebles.map((inmueble) => {
+          {inmuebles.map((inmueble) => {
             return (
-              <Col key={inmueble.id} sm={12} md={6} lg={4}>
+              <Col key={inmueble._id} sm={12} md={6} lg={4}>
                 <br />
                 <div className="card">
-                  <img src={inmueble.imagen} className="card-img-top" alt="..." />
+                  <img src={inmueble.image} className="card-img-top" alt="..." />
                   <div className="card-body">
-                    <h2 className="card-title">{inmueble.descripcionP}</h2>
+                    <h2 className="card-title">{inmueble.descript1}</h2>
                     <p className="card-text" style={{ color: "black" }}>
-                      {inmueble.descripcion}
+                      {inmueble.descript2}
                     </p>
-                    <Link to={'/description/' + inmueble.id}>
+                    <Link to={`/description/${inmueble._id}`}>
                       <Button
                         className="no-hover"
                         style={{

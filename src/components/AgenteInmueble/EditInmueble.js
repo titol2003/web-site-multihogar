@@ -1,13 +1,13 @@
-import React, {useState} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import './PublicarInmueble.css'
-import { useNavigate } from 'react-router-dom'
+import './EditInmueble.css'
+import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 
-function PublicarInmueble() {
+function EditarInmueble() {
 
     const [descript1, setDescript1] = useState('')
     const [descript2, setDescript2] = useState('')
@@ -23,45 +23,87 @@ function PublicarInmueble() {
     const [ubicacion, setUbicacion] = useState('')
     const [negocio, setNegocio] = useState('')
     const [precio, setPrecio] = useState('')
-    const [image, setImage] = useState('')
-    const [images, setImages] = useState('')
+    /*const [image, setImage] = useState('')
+    const [images, setImages] = useState('')*/
     const [agentes, setAgentes] = useState('')
+
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false); // Nuevo estado
     const navigate = useNavigate() 
+    const {id} =useParams()
     const URI = 'http://localhost:8000/inmuebles/'
 
-    const store = async (e) => {
+    const update = async (e) => {
         e.preventDefault(); // Evitar el comportamiento predeterminado del formulario
-       // Crear un objeto con los datos necesarios para el nuevo inmueble
-        const nuevoInmueble = {
-            descript1: descript1,
-            descript2: descript2,
-            description: description,
-            ventajas: ventajas,
-            area: area,
-            habitaciones: habitaciones,
-            estrato: estrato,
-            baños: baños,
-            inmueble: inmueble,
-            fondo: fondo,
-            ubicacion: ubicacion,
-            negocio: negocio,
-            precio: precio,
-            image:image,
-            images: images,
-            agentes: agentes
-        }; 
         try {
-            // Enviar una solicitud POST al URI especificado con los datos del nuevo inmueble
-            await axios.post(URI, nuevoInmueble);   
-            // Después de crear el inmueble, redirigir al usuario a la página principal
-            navigate('/');
-        } catch (error) {
-            // Manejar errores en caso de que la solicitud falle
-            console.error('Error al crear el inmueble', error);
-        }
+
+            await axios.put(`${URI}${id}`, {
+                descript1: descript1,
+                descript2: descript2,
+                description: description,
+                ventajas: ventajas,
+                area: area,
+                habitaciones: habitaciones,
+                estrato: estrato,
+                baños: baños,
+                inmueble: inmueble,
+                frente: frente,
+                fondo: fondo,
+                ubicacion: ubicacion,
+                negocio: negocio,
+                precio: precio,
+                /*image:image,
+                images: images,*/
+                agentes: agentes
+            }); 
+            setShowSuccessMessage(true); // Mostrar el mensaje de éxito
+            setTimeout(() => {
+                navigate('/precioAgente'); // Redirigir después de unos segundos
+            }, 2000); // Redirigir después de 3 segundos
+    } catch (error) {
+        console.error('Error updating inmueble:', error);
     }
+};
 
+    const getInmuebleById = useCallback(async () => {
+        try {
+            const response = await axios.get(`${URI}${id}`);
+            const resData = response.data;
+            setDescript1(resData.descript1);
+            setDescript2 (resData.descript2)
+            setDescription (resData.description)
+            setVentajas (resData.ventajas)
+            setArea (resData.area)
+            setHabitaciones (resData.habitaciones)
+            setEstrato (resData.estrato)
+            setBaños (resData.baños)
+            setInmueble (resData.inmueble)
+            setFrente (resData.frente)
+            setFondo (resData.fondo)
+            setUbicacion (resData.ubicacion)
+            setNegocio (resData.negocio)
+            setPrecio (resData.precio)
+            /*setImage (resData.image)
+            setImages (resData.images)*/
+            setAgentes (resData.agentes)
+        } catch (error) {
+            console.error('Error fetching inmueble:', error);
+        }
+    }, [id]);
 
+        
+    useEffect(() => {
+        getInmuebleById();
+    }, [getInmuebleById]);
+
+    useEffect(() => {
+        if (showSuccessMessage) {
+            setTimeout(() => {
+                setShowSuccessMessage(false);
+                window.alert("El inmueble ha sido actualizado correctamente.");
+            },); // Ocultar el mensaje después de 5 segundos
+        }
+    }, [showSuccessMessage]);
+        
     return (
         <div >
             <Form>
@@ -176,21 +218,27 @@ function PublicarInmueble() {
                     </Form.Group>
                 </Row>
                 
+              {
+                /*
 
-                <Form.Group controlId="formFile" className="mb-3">
-                    <Form.Label>Agregar imagen principal</Form.Label>
-                    <Form.Control type="file" 
-                    value={image}
-                    onChange={ (e)=> setImage(e.target.value)}
-                    />
-                </Form.Group>
-                <Form.Group controlId="formFileMultiple" className="mb-3">
-                    <Form.Label>Agregar imagenes del inmueble</Form.Label>
-                    <Form.Control type="file" multiple 
-                    value={images}
-                    onChange={ (e)=> setImages(e.target.value)}
-                    />
-                </Form.Group>
+                    <Form.Group controlId="formFile" className="mb-3">
+                        <Form.Label>Agregar imagen principal</Form.Label>
+                        <Form.Control type="file" 
+                        value={image}
+                        onChange={ (e)=> setSelectImage(e.target.files[0])}
+                        />
+                    </Form.Group>
+                    <Form.Group controlId="formFileMultiple" className="mb-3">
+                        <Form.Label>Agregar imagenes del inmueble</Form.Label>
+                        <Form.Control type="file" multiple 
+                        value={images}
+                        onChange={ (e)=> setSelectImages(Array.from(e.target.files))}
+                        />
+                    </Form.Group>
+                 */
+              }  
+                
+                
 
                 <Form.Select className="mb-4" aria-label="Default select example"
                 value={agentes}
@@ -204,11 +252,12 @@ function PublicarInmueble() {
                 </Form.Select>
 
                 <div>
-                <Button className='btn' variant="outline-success" onClick={store}>Publicar Inmueble</Button>{' '}
+                <Button className='btn' variant="outline-success" onClick={update}>Actualizar Inmueble</Button>{' '}
                 </div>
             </Form>
+
         </div>
     );
 }  
 
-export default PublicarInmueble
+export default EditarInmueble

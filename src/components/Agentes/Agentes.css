@@ -13,12 +13,13 @@ body {
 }
 
 .nombre {
+    color: aliceblue;
     margin-top: 20px;
     padding: 25px
 }
 
 .telefono {
-     
+    color: aliceblue;
     padding-left: 25px;
     margin-top: 20px;
     
