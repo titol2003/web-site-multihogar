@@ -1,11 +1,11 @@
 import React from 'react'
 import MercanciaAgentes from '../components/AgenteInmueble/MercanciaAgente'
-import AgenteNavbar from '../components/AgenteInmueble/AgenteNavbar'
+import Navbar from '../components/Navbar.js'
 
 const MercanciaAgente = () => {
   return (
     <div>
-        <AgenteNavbar />
+        <Navbar />
         <br />
         <br />
         <MercanciaAgentes/>

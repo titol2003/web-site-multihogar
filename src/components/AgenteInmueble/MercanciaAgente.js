@@ -31,7 +31,7 @@ const Mercado = () => {
               <Col key={inmueble._id} sm={12} md={6} lg={4}>
                 <br />
                 <div className="card">
-                  <img src={inmueble.image} className="card-img-top" alt="..." />
+                  <img src={'data:image/png;base64,' + inmueble.image} className="card-img-top" alt="..." />
                   <div className="card-body">
                     <h2 className="card-title">{inmueble.descript1}</h2>
                     <p className="card-text" style={{ color: "black" }}>

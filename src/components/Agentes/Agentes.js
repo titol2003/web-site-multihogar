@@ -1,48 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Agentes.css";
+import axios from "axios";
 
+const URI = 'http://localhost:8000/agente/'
 
 const Agentes = () => {
+
+  const [angentes, setAgente] = useState([])
+  useEffect( ()=>{
+    getAgentes()
+  }, [])
+
+  const getAgentes = async (id) => {
+    const res = await axios.get(URI)
+    setAgente(res.data)
+  }
+ 
+
+  
+
   return (
     <div>
       <h1 className="text-center mt-4 pt-3 pb-3">AGENTES</h1>
-    
-      <div>
-        <figure className="perfilagente">
-          <img
-            src="https://marketplace.canva.com/EAFLaH3yXbI/2/0/1600w/canva-foto-de-perfil-para-facebook-agente-inmobiliaria-profesional-morado-y-blanco-kWUwWpx_5sk.jpg"
-            width={200}
-            className="figure-img img-fluid rounded"
-            alt="..."
-          />
-
-          <figcaption className="datos">
-            <div className="nombre">
-              <h3>JENNY CAROLINA AVENDAÑO</h3>
+      { angentes.map( (angente, index) => (
+          <main key={index}>
+            
+            <div>
+              <figure className="perfilagente">
+                <img
+                  src="https://img.freepik.com/iconos-gratis/usuario_318-749758.jpg"
+                  width={200}
+                  className="figure-img img-fluid rounded"
+                  alt="..."
+                />
+                <figcaption className="datos">
+                  <div className="nombre">
+                    <h3>{angente.name}</h3>
+                  </div>
+                  <div className="telefono">
+                    <h3>{angente.number}</h3>
+                  </div>
+                </figcaption>
+              </figure>
             </div>
-            <div className="telefono">
-              <h3>312 565 0978</h3>
-            </div>
-          </figcaption>
-        </figure>
-
-        <figure className="perfilagente">
-          <img
-            src="https://img.freepik.com/fotos-premium/oficina-retratos-consultor-o-asesor-hombre-negocios-feliz-punto-vista-cliente-discutir-lider-financiero-ayudar-cara-joven-contador-empleado-corporativo-o-persona-asiatica-su-escritorio_590464-183293.jpg"
-            width={200}
-            className="figure-img img-fluid rounded"
-            alt="..."/>
-
-          <figcaption className="datos">
-            <div className="nombre">
-              <h3>JHONATAN CAMILO PAEZ</h3>
-            </div>
-            <div className="telefono">
-              <h3>323 456 7890</h3>
-            </div>
-          </figcaption>
-        </figure>
-      </div>
+          </main>
+      ))   
+      }
     </div>
   );
 };

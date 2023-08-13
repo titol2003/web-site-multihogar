@@ -1,11 +1,10 @@
 import React from 'react'
 import PublicarInmueble from '../components/PublicarInmueble/PublicarInmueble'
-import AgenteNavbar from '../components/AgenteInmueble/AgenteNavbar'
-
+import Navbar from '../components/Navbar.js'
 const Publicar = () => {
     return (
         <div> 
-            <AgenteNavbar />
+            <Navbar />
             <br />
             <br />
             <PublicarInmueble />            

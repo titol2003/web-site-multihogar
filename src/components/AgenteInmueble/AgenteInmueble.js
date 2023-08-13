@@ -3,8 +3,7 @@ import {Row, Col} from 'react-bootstrap';
 import CarouselId from '../Carousel/CarouselId';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
-import AgenteNavbar from '../AgenteInmueble/AgenteNavbar'
-
+import Navbar from '../Navbar.js'
 
 const AgenteInmueble = () => {
 
@@ -46,7 +45,7 @@ const AgenteInmueble = () => {
 
   return (
     <div >
-    <AgenteNavbar />
+    <Navbar />
         <br />
         <br />
         <br />
@@ -59,7 +58,7 @@ const AgenteInmueble = () => {
                         <Row className='px-4 my-5' sm={5}>
                             
                             <Col sm={12} xl={6}>
-                                <CarouselId images={inmueble.carousel}/>
+                                <CarouselId images={inmueble.images}/>
                             </Col>
                             <Col xs={10} sm={8} md={10} lg={6} xl={5}>
                                 <div className="row">

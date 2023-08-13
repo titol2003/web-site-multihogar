@@ -1,27 +1,20 @@
-import React, { useEffect ,useState } from 'react';
+import React from 'react';
 import { Carousel } from 'react-bootstrap';
 import './CarouselId.css'
-import axios from 'axios'
-const URI = 'http://localhost:8000/inmuebles/'
+
 
 const CarouselId = ({ images }) => {
-
-  const [inmuebles, setInmueble] = useState([])
-    useEffect( ()=>{
-      getInmuebles()
-  },[])
-
-  const getInmuebles = async () => {
-    const res = await axios.get(URI)
-    setInmueble(res.data)
+  if (!images) {
+    // Manejar el caso donde images es undefined
+    return <div>No hay imágenes disponibles</div>;
   }
   
   return (
     <>
       <Carousel>
-        {inmuebles.map((inmueble) => (
+        {images.map((image) => (
           <Carousel.Item  >
-            <img src={inmueble.images} alt="" className='imagen-tamaño' 
+            <img src={'data:image/png;base64,' + image} alt="" className='imagen-tamaño' 
             
             />
           </Carousel.Item>

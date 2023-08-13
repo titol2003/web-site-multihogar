@@ -1,214 +1,164 @@
-import React, {useState} from 'react'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import './PublicarInmueble.css'
-import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import React, { useState } from "react";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import "./PublicarInmueble.css";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function PublicarInmueble() {
 
-    const [descript1, setDescript1] = useState('')
-    const [descript2, setDescript2] = useState('')
-    const [description, setDescription] = useState('')
-    const [ventajas, setVentajas] = useState('')
-    const [area, setArea] = useState('')
-    const [habitaciones, setHabitaciones] = useState('')
-    const [estrato, setEstrato] = useState('')
-    const [baños, setBaños] = useState('')
-    const [inmueble, setInmueble] = useState('')
-    const [frente, setFrente] = useState('')
-    const [fondo, setFondo] = useState('')
-    const [ubicacion, setUbicacion] = useState('')
-    const [negocio, setNegocio] = useState('')
-    const [precio, setPrecio] = useState('')
-    const [image, setImage] = useState('')
-    const [images, setImages] = useState('')
-    const [agentes, setAgentes] = useState('')
-    const navigate = useNavigate() 
-    const URI = 'http://localhost:8000/inmuebles/'
+  const [images, setImages] = useState([]);
+  const navigate = useNavigate();
+  const URI = "http://localhost:8000/inmuebles/";
 
-    const store = async (e) => {
-        e.preventDefault(); // Evitar el comportamiento predeterminado del formulario
-       // Crear un objeto con los datos necesarios para el nuevo inmueble
-        const nuevoInmueble = {
-            descript1: descript1,
-            descript2: descript2,
-            description: description,
-            ventajas: ventajas,
-            area: area,
-            habitaciones: habitaciones,
-            estrato: estrato,
-            baños: baños,
-            inmueble: inmueble,
-            fondo: fondo,
-            ubicacion: ubicacion,
-            negocio: negocio,
-            precio: precio,
-            image:image,
-            images: images,
-            agentes: agentes
-        }; 
-        try {
-            // Enviar una solicitud POST al URI especificado con los datos del nuevo inmueble
-            await axios.post(URI, nuevoInmueble);   
-            // Después de crear el inmueble, redirigir al usuario a la página principal
-            navigate('/');
-        } catch (error) {
-            // Manejar errores en caso de que la solicitud falle
-            console.error('Error al crear el inmueble', error);
-        }
+  const imageshare = (files) => {
+    var data = [];
+    for (let i = 0; i < files.length; i++) {
+      data.push(files[i]);
     }
+    setImages(data);
+  };
 
+  const enviar = async (e) => {
+    e.preventDefault();
+    var data = new FormData(e.target);
+    await axios.post(URI, data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  };
 
-    return (
-        <div >
-            <Form>
-            <h1 className='text-center mt-4 pt-3 pb-3'>PUBLICAR INMUEBLE</h1>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Titulo del Anuncio</Form.Label>
-                    <Form.Control type="text" placeholder="Utilice un titulo llamativo" 
-                    value={descript1}
-                    onChange={ (e)=> setDescript1(e.target.value)}
-                    />
-                    <Form.Label>Texto descriptivo</Form.Label>
-                    <Form.Control type="text" placeholder="Brevemente detalle caracteristicas principales de su inmueble" 
-                    value={descript2}
-                    onChange={ (e)=> setDescript2(e.target.value)}
-                    />
-                    <Form.Label>Descripcion del inmueble</Form.Label>
-                    <Form.Control type="text" placeholder="Describa todo lo que conforma su inmueble" 
-                    value={description}
-                    onChange={ (e)=> setDescription(e.target.value)}
-                    />
-                    <Form.Label>Ventajas</Form.Label>
-                    <Form.Control type="text" placeholder="Piense en porque su inmueble es el mejor"
-                    value={ventajas}
-                    onChange={ (e)=> setVentajas(e.target.value)}  
-                    />
-                </Form.Group>
-                <Row className="mb-3">
-                    <Form.Group as={Col} controlId="formGridCity">
-                        <Form.Label>Area</Form.Label>
-                        <Form.Control 
-                        value={area}
-                        onChange={ (e)=> setArea(e.target.value)} 
-                        />
-                    </Form.Group>
-                    <Form.Group as={Col} controlId="formGridCity">
-                        <Form.Label>Habitaciones</Form.Label>
-                        <Form.Control 
-                        value={habitaciones}
-                        onChange={ (e)=> setHabitaciones(e.target.value)}
-                        />
-                    </Form.Group>
-                    <Form.Group as={Col} controlId="formGridCity">
-                        <Form.Label>Estrato</Form.Label>
-                        <Form.Control
-                        value={estrato}
-                        onChange={ (e)=> setEstrato(e.target.value)} 
-                        />
-                    </Form.Group>
-                    <Form.Group as={Col} controlId="formGridCity">
-                        <Form.Label>Baños</Form.Label>
-                        <Form.Control 
-                        value={baños}
-                        onChange={ (e)=> setBaños(e.target.value)}
-                        />
-                    </Form.Group>
-                </Row>
+  return (
+    <div>
+      <Form encType="multipart/form-data" onSubmit={enviar}>
+        <h1 className="text-center mt-4 pt-3 pb-3">PUBLICAR INMUEBLE</h1>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Titulo del Anuncio</Form.Label>
+          <Form.Control
+            name="descript1"
+            type="text"
+            placeholder="Utilice un titulo llamativo"
+            
+          />
+          <Form.Label>Texto descriptivo</Form.Label>
+          <Form.Control
+            name="descript2"
+            type="text"
+            placeholder="Brevemente detalle caracteristicas principales de su inmueble"
+          />
+          <Form.Label>Descripcion del inmueble</Form.Label>
+          <Form.Control
+            name="description"
+            type="text"
+            placeholder="Describa todo lo que conforma su inmueble"
+          />
+          <Form.Label>Ventajas</Form.Label>
+          <Form.Control
+            name="ventajas"
+            type="text"
+            placeholder="Piense en porque su inmueble es el mejor"
+          />
+        </Form.Group>
+        <Row className="mb-3">
+          <Form.Group as={Col} controlId="formGridCity">
+            <Form.Label>Area</Form.Label>
+            <Form.Control name="area"/>
+          </Form.Group>
+          <Form.Group as={Col} controlId="formGridCity">
+            <Form.Label>Habitaciones</Form.Label>
+            <Form.Control name="habitaciones" />
+          </Form.Group>
+          <Form.Group as={Col} controlId="formGridCity">
+            <Form.Label>Estrato</Form.Label>
+            <Form.Control name="estrato" />
+          </Form.Group>
+          <Form.Group as={Col} controlId="formGridCity">
+            <Form.Label>Baños</Form.Label>
+            <Form.Control name="baños" />
+          </Form.Group>
+        </Row>
 
-                <Form.Select className="mb-3" aria-label="Default select example"
-                value={inmueble}
-                onChange={ (e)=> setInmueble(e.target.value)}
-                >
-                    <option>Tipo de Inmueble</option>
-                    <option value="Apartamento">Apartamento</option>
-                    <option value="Casa">Casa</option>
-                    <option value="Finca">Finca</option>
-                    <option value="Lote">Lote</option>
-                    <option value="Local">Local</option>
-                    <option value="Casa Lote">Casa Lote</option>
-                </Form.Select>
+        <Form.Select
+          className="mb-3"
+          aria-label="Default select example"
+          
+          name="inmueble"
+        >
+          <option>Tipo de Inmueble</option>
+          <option value="Apartamento">Apartamento</option>
+          <option value="Casa">Casa</option>
+          <option value="Finca">Finca</option>
+          <option value="Lote">Lote</option>
+          <option value="Local">Local</option>
+          <option value="Casa Lote">Casa Lote</option>
+        </Form.Select>
 
-                <Row className="mb-3">
-                    <Form.Group as={Col} controlId="formGridCity">
-                        <Form.Label>Frente</Form.Label>
-                        <Form.Control 
-                        value={frente}
-                        onChange={ (e)=> setFrente(e.target.value)}
-                        />
-                    </Form.Group>
-                    <Form.Group as={Col} controlId="formGridCity">
-                        <Form.Label>Fondo</Form.Label>
-                        <Form.Control 
-                        value={fondo}
-                        onChange={ (e)=> setFondo(e.target.value)}
-                        />
-                    </Form.Group>
-                    <Form.Group as={Col} controlId="formGridCity">
-                        <Form.Label>Ubicaición</Form.Label>
-                        <Form.Control 
-                        value={ubicacion}
-                        onChange={ (e)=> setUbicacion(e.target.value)}
-                        />
-                    </Form.Group>
-                </Row>
+        <Row className="mb-3">
+          <Form.Group as={Col} controlId="formGridCity">
+            <Form.Label>Frente</Form.Label>
+            <Form.Control name="frente"  />
+          </Form.Group>
+          <Form.Group as={Col} controlId="formGridCity">
+            <Form.Label>Fondo</Form.Label>
+            <Form.Control name="fondo" />
+          </Form.Group>
+          <Form.Group as={Col} controlId="formGridCity">
+            <Form.Label>Ubicaición</Form.Label>
+            <Form.Control name="ubicacion" />
+          </Form.Group>
+        </Row>
 
-                <Form.Select className="mb-4" aria-label="Default select example"
-                value={negocio}
-                onChange={ (e)=> setNegocio(e.target.value)}
-                >
-                    <option>Tipo de Negocio</option>
-                    <option value="Permuta">Permuta</option>
-                    <option value="Venta">Venta</option>
-                    <option value="Arriendo">Arriendo</option>
-                </Form.Select>
+        <Form.Select
+        name="negocio"
+          className="mb-4"
+          aria-label="Default select example"
+          
+        >
+          <option>Tipo de Negocio</option>
+          <option value="Permuta">Permuta</option>
+          <option value="Venta">Venta</option>
+          <option value="Arriendo">Arriendo</option>
+        </Form.Select>
 
-                <Row style={{ margin:"10px"}}>
-                    <Form.Group as={Col} controlId="formGridCity">
-                        <Form.Label>Precio</Form.Label>
-                        <Form.Control 
-                        value={precio}
-                        onChange={ (e)=> setPrecio(e.target.value)}
-                        />
-                    </Form.Group>
-                </Row>
-                
+        <Row style={{ margin: "10px" }}>
+          <Form.Group as={Col} controlId="formGridCity">
+            <Form.Label>Precio</Form.Label>
+            <Form.Control name="precio"/>
+          </Form.Group>
+        </Row>
 
-                <Form.Group controlId="formFile" className="mb-3">
-                    <Form.Label>Agregar imagen principal</Form.Label>
-                    <Form.Control type="file" 
-                    value={image}
-                    onChange={ (e)=> setImage(e.target.value)}
-                    />
-                </Form.Group>
-                <Form.Group controlId="formFileMultiple" className="mb-3">
-                    <Form.Label>Agregar imagenes del inmueble</Form.Label>
-                    <Form.Control type="file" multiple 
-                    value={images}
-                    onChange={ (e)=> setImages(e.target.value)}
-                    />
-                </Form.Group>
+        <Form.Group controlId="formFile" className="mb-3">
+          <Form.Label>Agregar imagen principal</Form.Label>
+          <Form.Control type="file" name="image" />
+        </Form.Group>
+        <Form.Group controlId="formFileMultiple" className="mb-3">
+          <Form.Label>Agregar imagenes del inmueble</Form.Label>
+          <Form.Control type="file" multiple name="images" />
+        </Form.Group>
 
-                <Form.Select className="mb-4" aria-label="Default select example"
-                value={agentes}
-                onChange={ (e)=> setAgentes(e.target.value)}
-                >
-                    <option>Elegir Agente</option>
-                    <option value="Nicol Ospina">Nicol Ospina</option>
-                    <option value="Luz Reyes">Luz Reyes</option>
-                    <option value="Javier Guevara">Javier Guevara</option>
-                    <option value="Yair Osorio">Yair Osorio</option>
-                </Form.Select>
+        <Form.Select
+        name="agentes"
+          className="mb-4"
+          aria-label="Default select example"
+        >
+          <option>Elegir Agente</option>
+          <option value="Nicol Ospina">Nicol Ospina</option>
+          <option value="Luz Reyes">Luz Reyes</option>
+          <option value="Javier Guevara">Javier Guevara</option>
+          <option value="Yair Osorio">Yair Osorio</option>
+        </Form.Select>
 
-                <div>
-                <Button className='btn' variant="outline-success" onClick={store}>Publicar Inmueble</Button>{' '}
-                </div>
-            </Form>
+        <div>
+          <Button className="btn" variant="outline-success" type="submit">
+            Publicar Inmueble
+          </Button>
         </div>
-    );
-}  
+      </Form>
+    </div>
+  );
+}
 
-export default PublicarInmueble
+export default PublicarInmueble;
