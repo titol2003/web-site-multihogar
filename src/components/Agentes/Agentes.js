@@ -6,7 +6,7 @@ const URI = 'http://localhost:8000/agente/'
 
 const Agentes = () => {
 
-  const [angentes, setAgente] = useState([])
+  const [agentes, setAgente] = useState([])
   useEffect( ()=>{
     getAgentes()
   }, [])
@@ -22,7 +22,7 @@ const Agentes = () => {
   return (
     <div>
       <h1 className="text-center mt-4 pt-3 pb-3">AGENTES</h1>
-      { angentes.map( (angente, index) => (
+      { agentes.map( (angente, index) => (
           <main key={index}>
             
             <div>
@@ -39,6 +39,9 @@ const Agentes = () => {
                   </div>
                   <div className="telefono">
                     <h3>{angente.number}</h3>
+                  </div>
+                  <div className="telefono">
+                    <h3>{angente.email}</h3>
                   </div>
                 </figcaption>
               </figure>

@@ -19,6 +19,7 @@ const InmuebleDescript = () => {
           try {
             const response = await axios.get(`http://localhost:8000/inmuebles/${id}`);
             setInmueble(response.data);
+            console.log(response)
           } catch (error) {
             setError(error.message);
             console.error(error.message);
@@ -39,6 +40,7 @@ const InmuebleDescript = () => {
         <br />
         <br />
         <br />
+        
         {
             error 
                 ? <p>{error}</p>
@@ -47,11 +49,13 @@ const InmuebleDescript = () => {
                         <Row className='px-4 my-5' sm={5}>
                             
                             <Col sm={12} xl={6}>
-                                <CarouselId images={inmueble.carousel}/>
+                                <CarouselId images={inmueble.images}/>
                             </Col>
-                            
+                    
                             <Col xs={10} sm={8} md={10} lg={6} xl={5}>
+                                
                                 <div className="row">
+                                    
                                     <div className="col-4">
                                         <div className="list-group" id="list-tab" role="tablist">
                                         <a className="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="list-home">Descripción</a>
@@ -117,13 +121,15 @@ const InmuebleDescript = () => {
                                     </ul>
                                 </div> 
                             </Col>
+                            
                         </Row>
+                        <ModalUser show={show} handleClose={handleClose} correo={inmueble.agente?.email}/>
                     </div>
                 </main>
           
         }
         <br />
-        <ModalUser show={show} handleClose={handleClose}/>
+        
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
@@ -7,11 +7,25 @@ import "./PublicarInmueble.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+const URII = 'http://localhost:8000/agente/'
+
 function PublicarInmueble() {
 
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false); 
   const [images, setImages] = useState([]);
   const navigate = useNavigate();
   const URI = "http://localhost:8000/inmuebles/";
+
+
+  const [agentes, setAgente] = useState([])
+  useEffect( ()=>{
+    getAgentes()
+  }, [])
+
+  const getAgentes = async (id) => {
+    const res = await axios.get(URII)
+    setAgente(res.data)
+  }
 
   const imageshare = (files) => {
     var data = [];
@@ -22,14 +36,32 @@ function PublicarInmueble() {
   };
 
   const enviar = async (e) => {
-    e.preventDefault();
-    var data = new FormData(e.target);
-    await axios.post(URI, data, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
+    try {
+      e.preventDefault();
+      var data = new FormData(e.target);
+      await axios.post(URI, data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      setShowSuccessMessage(true); // Mostrar el mensaje de éxito
+      setTimeout(() => {
+        navigate('/precioAgente'); // Redirigir después de unos segundos
+      }, 2000); // Redirigir después de 3 segundos
+    } catch (error) {
+      console.error('Error al publicar el inmueble:', error);
+    }
+    
   };
+
+  useEffect(() => {
+    if (showSuccessMessage) {
+        setTimeout(() => {
+            setShowSuccessMessage(false);
+            window.alert("El inmueble ha sido publicado correctamente!");
+        },); // Ocultar el mensaje después de 5 segundos
+    }
+}, [showSuccessMessage]);
 
   return (
     <div>
@@ -139,17 +171,20 @@ function PublicarInmueble() {
           <Form.Control type="file" multiple name="images" />
         </Form.Group>
 
-        <Form.Select
-        name="agentes"
+
+        <Form.Control
+          as="select"
+          name="agentes"
           className="mb-4"
           aria-label="Default select example"
         >
-          <option>Elegir Agente</option>
-          <option value="Nicol Ospina">Nicol Ospina</option>
-          <option value="Luz Reyes">Luz Reyes</option>
-          <option value="Javier Guevara">Javier Guevara</option>
-          <option value="Yair Osorio">Yair Osorio</option>
-        </Form.Select>
+          <option><b>Elegir Agente</b></option>
+          {agentes.map((agente, index) => (
+            <option key={index} data={agente.id} value={JSON.stringify(agente)}>
+            <b>{agente.name}</b>
+            </option>
+          ))}
+        </Form.Control>
 
         <div>
           <Button className="btn" variant="outline-success" type="submit">

@@ -17,6 +17,7 @@ const Form = () => {
   const create = async (e) => {
     e.preventDefault()
     await axios.post(URI, {name: name, cedula: cedula, number: number, email: email, password: password})
+    alert('Agente registrado correctamente!')
     navigate('/')
   }
 

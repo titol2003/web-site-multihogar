@@ -12,10 +12,9 @@ const CarouselId = ({ images }) => {
   return (
     <>
       <Carousel>
-        {images.map((image) => (
-          <Carousel.Item  >
-            <img src={'data:image/png;base64,' + image} alt="" className='imagen-tamaño' 
-            
+        {images.map((image, index) => (
+          <Carousel.Item  key={index}>
+            <img src={'data:image/png;base64,' + image} alt="" className='imagen-tamaño img-fluid d-block mx-auto '    
             />
           </Carousel.Item>
         ))}

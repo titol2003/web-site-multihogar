@@ -33,7 +33,7 @@ return (
             {
                token && <li><Link to='/agentes'>AGENTES</Link></li>
             }
-            { token&&<li ><Link onClick={()=> logout()} >Cerrar Sesión</Link></li>}
+            { token&&<li ><Link to='/' onClick={()=> logout()} >Cerrar Sesión</Link></li>}
             {
                 !token&&
                 <li>

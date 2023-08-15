@@ -21,3 +21,13 @@ form input, textarea {
     font-family: 'Outfit', sans-serif;
     background: rgba(225,255,255, .1);
 }
+
+input {
+    padding: 8px;
+    margin-top: 5px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    background-color: #555; /* Input field background color */
+    color: white; /* Input field text color */
+}

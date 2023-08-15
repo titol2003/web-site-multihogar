@@ -118,7 +118,8 @@ const AgenteInmueble = () => {
                                 <div>
                                     <ul className="pagination">
                                         <button className='btnn mr-1'><li className="page-item">Precio: <br />{inmueble.precio}</li></button>
-                                        <button className='btnn'><li className="page-item">Agente: <br />{inmueble.agentes}</li></button>
+                                        {/*<button className='btnn'><li className="page-item">Agente: <br />{inmueble.agentes}</li></button>*/}
+                                        
                                     
                                         <button className='btnncrud' onClick={handleDelete} >
                                             <li className="page-item">

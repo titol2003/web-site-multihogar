@@ -6,8 +6,21 @@ import Row from 'react-bootstrap/Row';
 import './EditInmueble.css'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
+import Navbar from '../Navbar.js';
+
+const URII = 'http://localhost:8000/agente/'
 
 function EditarInmueble() {
+
+    const [agentess, setAgente] = useState([])
+    useEffect( ()=>{
+        getAgentes()
+    }, [])
+
+    const getAgentes = async (id) => {
+        const res = await axios.get(URII)
+        setAgente(res.data)
+    }
 
     const [descript1, setDescript1] = useState('')
     const [descript2, setDescript2] = useState('')
@@ -106,8 +119,12 @@ function EditarInmueble() {
         
     return (
         <div >
+        <Navbar />
+        <br />
+        <br />
+        <br />
             <Form>
-            <h1 className='text-center mt-4 pt-3 pb-3'>PUBLICAR INMUEBLE</h1>
+            <h1 className='text-center mt-4 pt-3 pb-3'>EDITAR INMUEBLE</h1>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Titulo del Anuncio</Form.Label>
                     <Form.Control type="text" placeholder="Utilice un titulo llamativo" 
@@ -240,19 +257,22 @@ function EditarInmueble() {
                 
                 
 
-                <Form.Select className="mb-4" aria-label="Default select example"
-                value={agentes}
-                onChange={ (e)=> setAgentes(e.target.value)}
+                <Form.Control
+                as="select"
+                name="agentes"
+                className="mb-4"
+                aria-label="Default select example"
                 >
-                    <option>Elegir Agente</option>
-                    <option value="Nicol Ospina">Nicol Ospina</option>
-                    <option value="Luz Reyes">Luz Reyes</option>
-                    <option value="Javier Guevara">Javier Guevara</option>
-                    <option value="Yair Osorio">Yair Osorio</option>
-                </Form.Select>
+                
+                {agentess.map((agente) => (
+                    <option key={agente.id} value={JSON.stringify(agente)} style={{ fontWeight: 'bold' }}>
+                    <b>{agente.name}</b>
+                    </option>
+                ))}
+                </Form.Control>
 
                 <div>
-                <Button className='btn' variant="outline-success" onClick={update}>Actualizar Inmueble</Button>{' '}
+                    <Button className='btn' variant="outline-success" onClick={update}>Actualizar Inmueble</Button>{' '}
                 </div>
             </Form>
 
