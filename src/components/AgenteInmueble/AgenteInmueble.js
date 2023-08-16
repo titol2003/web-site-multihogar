@@ -4,8 +4,19 @@ import CarouselId from '../Carousel/CarouselId';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../Navbar.js'
+const URII = 'http://localhost:8000/agente/'
 
 const AgenteInmueble = () => {
+
+    const [agentes, setAgente] = useState([])
+    useEffect( ()=>{
+        getAgentes()
+    }, [])
+
+    const getAgentes = async (id) => {
+        const res = await axios.get(URII)
+        setAgente(res.data)
+    }
 
     const {id} = useParams()
     console.log(id)
@@ -118,7 +129,7 @@ const AgenteInmueble = () => {
                                 <div>
                                     <ul className="pagination">
                                         <button className='btnn mr-1'><li className="page-item">Precio: <br />{inmueble.precio}</li></button>
-                                        {/*<button className='btnn'><li className="page-item">Agente: <br />{inmueble.agentes}</li></button>*/}
+                                        
                                         
                                     
                                         <button className='btnncrud' onClick={handleDelete} >
@@ -140,7 +151,16 @@ const AgenteInmueble = () => {
                     </div>
                 </main>
         }
-        <br />
+    
+    {/* 
+        { agentes.map((agente, index) =>
+            <div key={index}>
+                <button className='btnn'><li className="page-item">Agente: <br />{agente.name}</li></button>
+            </div>
+        )
+
+        }
+        <br />*/}
     </div>
   )
 }

@@ -266,7 +266,7 @@ function EditarInmueble() {
                 
                 {agentess.map((agente) => (
                     <option key={agente.id} value={JSON.stringify(agente)} style={{ fontWeight: 'bold' }}>
-                    <b>{agente.name}</b>
+                    {agente.name}
                     </option>
                 ))}
                 </Form.Control>
