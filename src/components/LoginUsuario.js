@@ -4,7 +4,7 @@ import "./Login.css";
 import { Link, useNavigate} from "react-router-dom";
 import {AuthContext} from "../context/AuthContext"
 
-const URI = 'http://localhost:8000'
+const URI = 'https://render-titol-nodeback.onrender.com/'
 
 function LoginUsuario() {
 
@@ -38,7 +38,7 @@ function LoginUsuario() {
       if (token) {
         navigate("/precioAgente");
       }else{
-        window.history.pushState({},"MultiHogar-MH", "/login")
+        window.history.pushState({},"MultiHogar-MH", "web-site-multihogar/login")
       }
     })();
   });

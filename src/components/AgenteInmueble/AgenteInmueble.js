@@ -27,7 +27,7 @@ const AgenteInmueble = () => {
     useEffect(() => {
         async function fetchInmueble() {
           try {
-            const response = await axios.get(`http://localhost:8000/inmuebles/${id}`);
+            const response = await axios.get(`https://render-titol-nodeback.onrender.com/inmuebles/${id}`);
             setInmueble(response.data);
           } catch (error) {
             setError(error.message);
@@ -43,7 +43,7 @@ const AgenteInmueble = () => {
         // Si el usuario acepta, se procede a eliminar el inmueble
         if (confirmacion) {
             try {
-                await axios.delete(`http://localhost:8000/inmuebles/${id}`);
+                await axios.delete(`https://render-titol-nodeback.onrender.com/inmuebles/${id}`);
                 navigate('/precioAgente'); // Redirige a la página de inicio o a donde desees después de eliminar
             } catch (error) {
                 console.error(error.message);

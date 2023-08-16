@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 
-const URI = 'http://localhost:8000/inmuebles/'
+const URI = 'https://render-titol-nodeback.onrender.com/inmuebles/'
 
 const Mercado = () => {
 
