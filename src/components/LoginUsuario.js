@@ -4,7 +4,7 @@ import "./Login.css";
 import { Link, useNavigate} from "react-router-dom";
 import {AuthContext} from "../context/AuthContext"
 
-const URI = 'https://render-titol-nodeback.onrender.com/'
+const URI = 'https://render-titol-nodeback.onrender.com'
 
 function LoginUsuario() {
 
@@ -16,7 +16,7 @@ function LoginUsuario() {
 
   async function onSubmit(e) {
     e.preventDefault();
-    const res = await fetch(URI + "login", {
+    const res = await fetch(URI + "/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
