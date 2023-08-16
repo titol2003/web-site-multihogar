@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 
-const URI = 'http://localhost:8000/inmuebles/'
+const URI = 'https://render-titol-nodeback.onrender.com/inmuebles/'
 
 function PublicarInmueble() {
 

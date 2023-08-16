@@ -4,7 +4,7 @@ import CarouselId from '../Carousel/CarouselId';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../Navbar.js'
-const URII = 'http://localhost:8000/agente/'
+const URII = 'https://render-titol-nodeback.onrender.com/agente/'
 
 const AgenteInmueble = () => {
 
