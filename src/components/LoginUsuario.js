@@ -1,73 +1,87 @@
+import React, { useContext, useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
-import "./Login.css"  
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import "./Login.css";
+import { Link, useNavigate} from "react-router-dom";
+import {AuthContext} from "../context/AuthContext"
+
+const URI = 'http://localhost:8000'
 
 function LoginUsuario() {
-  
-  const [usuario, setUsuario] = useState("");
-  const [contraseña, setContraseña] = useState("");
-  
 
-  const handleSubmit = (e) => {
-    
+  const { token, setCookies } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+
+  async function onSubmit(e) {
     e.preventDefault();
-    alert("Todo los campos son obligatorios");
-
+    const res = await fetch(URI + "/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+    const { message, token } = await res.json();
+    if (message === "Bienvenido") {
+      setCookies("token", token, { path: "/", maxAge: 86400 })
+      navigate("/precioAgente")
+    }
+    alert(message);
   }
+  useEffect(() => {
+    (() => {
+      if (token) {
+        navigate("/precioAgente");
+      }else{
+        window.history.pushState({},"MultiHogar-MH", "/login")
+      }
+    })();
+  });
 
 
-return ( 
-    
+  return (
     <div>
-      <Form onSubmit={(e)=>handleSubmit(e)}>
-        
+      <Form onSubmit={onSubmit}>
         <Form.Group controlId="formBasicEmail">
-          <h2 className=""style={{color:"white"}} >Iniciar Sesión</h2>
-          <Form.Label>Usuario</Form.Label>
+          <h2 className="" style={{ color: "white" }}>
+            Iniciar Sesión
+          </h2>
+          <Form.Label>Email</Form.Label>
           <Form.Control
-            type=" usuario"
-            name=" usuario"
-            value={usuario}
-            onChange={(e) => setUsuario(e.target.value)}
-            placeholder="🤵Ingresar Usuario"
+            type="text"
+            name="email"
+            required onChange={(v) => setEmail(v.target.value)}
+            placeholder="🤵Ingresar Email"
           />
         </Form.Group>
 
-        
         <Form.Group controlId="formBasicPassword">
           <Form.Label>Contraseña</Form.Label>
           <Form.Control
-            type="contraseña"
-            name="contraseña"
-            value={contraseña}
-            onChange={(e) => setContraseña(e.target.value)}
+            required type="password" onChange={(v) => setPassword(v.target.value)}
             placeholder="🔑Contraseña"
           />
         </Form.Group>
 
-        <Link>
-          <Button
-            className="btnRegistro"
-            variant="primary"
-            type="Todo los campos son obligatorios"
-            onClick={(e) => handleSubmit(e)}
-          >
-            Iniciar Sesión
-          </Button>
-        </Link>
+        <Button
+          className="btnRegistro"
+          variant="primary"
+          type="submit"
+        >
+          Iniciar Sesión
+        </Button>
         <br />
-        <Link to='/registro'>
-          <Button className="btnRegistro">
-            !Quiero Registrarme!
-          </Button>
+        <Link to="/registro">
+          <Button className="btnRegistro" type="submit">¡Quiero Registrarme!</Button>
         </Link>
       </Form>
     </div>
-    
   );
 }
 
-
 export default LoginUsuario;
-

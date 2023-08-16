@@ -9,7 +9,8 @@ const Mercado = () => {
   return (
     <div>
         <Navbar/>
-        <HeroImagen heading='PRECIO' text='Elige que plan te conviene.'/>
+        <br /><br />
+        <HeroImagen heading='INMUEBLES' text='Variedad de inmuebles a un Click de distancia.'/>
         <br />
         <br />
         <MercadoCards />

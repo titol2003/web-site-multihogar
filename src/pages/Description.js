@@ -6,10 +6,7 @@ const Description = () => {
   return (
     <div>
       <Navbar/>
-      <br />
-      <br />
-      <br />
-      <InmuebleDescript/>
+      <InmuebleDescript />
     </div>
   )
 }

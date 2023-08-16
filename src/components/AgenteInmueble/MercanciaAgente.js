@@ -1,46 +1,63 @@
-import React from 'react'
-import { Button,Row, Col, Container } from 'react-bootstrap';
+import { Button, Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import {useState, useEffect} from 'react'
+import axios from 'axios'
+
+const URI = 'http://localhost:8000/inmuebles/'
 
 const Mercado = () => {
-  return (
-    <Container>
-      <Row xs={1} sm={2} md={2} lg={3} xl={3} >
-        <Col xs={12} sm={6} md={6} lg={4} xl={4}>
-          <div className="card" style={{width: '19rem'}}>
-            <img src="./ImagesSlider/slider1.jpg" className="card-img-top" alt="..."/>
-              <div className="card-body">
-              <h2 className="card-title">Casa moderna</h2>
-              <p className="card-text" style={{color:"black"}}>"Casa moderna de diseño vanguardista con interiores luminosos y amplios espacios abiertos. Estilo y comodidad."</p>
-              <Link to='/agenteDescript'> <Button className='no-hover' style={{backgroundColor: "#007bff", borderColor: "#007bff", boxShadow: "none"}} >CARACTERISTICAS</Button></Link>
-            </div>
-          </div>
-          <br />
-        </Col>
-        <Col xs={12} sm={6} md={6} lg={4} xl={4}>
-          <div className="card" style={{width: '19rem'}}>
-            <img src="./ImagesSlider/slider2.jpg" className="card-img-top" alt="..."/>
-              <div className="card-body">
-              <h2 className="card-title">Casa Colonial</h2>
-              <p className="card-text" style={{color:"black"}}>Casa colonial con encanto en ubicación privilegiada. Acabados de calidad. ¡Tu hogar ideal hecho realidad!".</p>
-              <Link to='/agenteDescript'> <Button className='no-hover' style={{backgroundColor: "#007bff", borderColor: "#007bff", boxShadow: "none"}} >CARACTERISTICAS</Button></Link>
-            </div>
-          </div>
-          <br />
-        </Col>
-        <Col xs={12} sm={6} md={6} lg={4} xl={4}>
-          <div className="card" style={{width: '19rem'}}>
-            <img src="./ImagesSlider/slider3.jpg" className="card-img-top" alt="..."/>
-              <div className="card-body">
-              <h2 className="card-title">Casa campestre</h2>
-              <p className="card-text" style={{color:"black"}}>Casa campestre encantadora rodeada de naturaleza, con hermosas vistas panorámicas. Acabados de calidad </p>
-              <Link to='/agenteDescript'> <Button className='no-hover' style={{backgroundColor: "#007bff", borderColor: "#007bff", boxShadow: "none"}} >CARACTERISTICAS</Button></Link>
-            </div>
-          </div>
-        </Col>
-      </Row>
-    </Container>
-  )
-}
 
-export default Mercado
+  const [inmuebles, setInmueble] = useState([])
+    useEffect( ()=>{
+      getInmuebles()
+  },[])
+
+  const getInmuebles = async () => {
+    const res = await axios.get(URI)
+    setInmueble(res.data)
+  }
+
+  
+
+
+  return (
+    <>
+    <br />
+
+      <Container>
+        <Row>
+          {inmuebles.map((inmueble) => {
+            return (
+              <Col key={inmueble._id} sm={12} md={6} lg={4}>
+                <br />
+                <div className="card">
+                  <img src={'data:image/png;base64,' + inmueble.image} className="card-img-top" alt="..." />
+                  <div className="card-body">
+                    <h2 className="card-title">{inmueble.descript1}</h2>
+                    <p className="card-text" style={{ color: "black" }}>
+                      {inmueble.descript2}
+                    </p>
+                    <Link to={`/inmuebles/${inmueble._id}`}>
+                      <Button
+                        className="no-hover"
+                        style={{
+                          backgroundColor: "#007bff",
+                          borderColor: "#007bff",
+                          boxShadow: "none",
+                        }}
+                      >
+                        CARACTERISTICAS
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              </Col>
+            );
+          })}
+        </Row>
+      </Container>
+    </>
+  );
+};
+
+export default Mercado;

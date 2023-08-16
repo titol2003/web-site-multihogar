@@ -1,10 +1,42 @@
-import React from 'react';
+import React, {useState}from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
 
-const ModalUser = ({show, handleClose }) => {
+
+const ModalUser = ({show, handleClose}) => {
+  const [formData, setFormData] = useState({
+    nombre: '',
+    email: '',
+    telefono: '',
+    comentarios: ''
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value
+    }));
+  };
+
+  
+
+  const handleContact = async () => {
+    const response = await fetch("http://localhost:8000/email", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({formData})
+    })
+    
+    const data = await response.json()
+
+    console.log(data)
+  };
+
   return (
     <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -20,9 +52,12 @@ const ModalUser = ({show, handleClose }) => {
                 </h4>
               </Form.Label>
               <Form.Control
-                type="nombre"
+                type="text"
+                name="nombre"
                 placeholder="pepito"
                 autoFocus
+                value={formData.nombre}
+                onChange={handleInputChange}
               />
             </Form.Group>
               <Form.Label>
@@ -33,6 +68,10 @@ const ModalUser = ({show, handleClose }) => {
               <Form.Control
                 type="email"
                 placeholder="name@example.com"
+                name="email"
+                autoFocus
+                value={formData.email}
+                onChange={handleInputChange}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -44,6 +83,10 @@ const ModalUser = ({show, handleClose }) => {
               <Form.Control
                 type="tel"
                 placeholder="3137806011"
+                name="telefono"
+                autoFocus
+                value={formData.telefono}
+                onChange={handleInputChange}
               />
             </Form.Group>
             <Form.Group
@@ -55,12 +98,19 @@ const ModalUser = ({show, handleClose }) => {
                     Comentarios
                 </h4>
               </Form.Label>
-              <Form.Control as="textarea" rows={2} />
+              <Form.Control 
+              as="textarea" 
+              rows={2}
+              name="comentarios"
+              autoFocus
+              value={formData.comentarios}
+              onChange={handleInputChange}
+              />
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={handleContact}>
             <h1 className='Le'>Contactarme</h1>
           </Button>
         </Modal.Footer>
