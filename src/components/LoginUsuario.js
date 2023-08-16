@@ -16,7 +16,7 @@ function LoginUsuario() {
 
   async function onSubmit(e) {
     e.preventDefault();
-    const res = await fetch(URI + "/login", {
+    const res = await fetch(URI + "login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -33,15 +33,7 @@ function LoginUsuario() {
     }
     alert(message);
   }
-  useEffect(() => {
-    (() => {
-      if (token) {
-        navigate("/precioAgente");
-      }else{
-        window.history.pushState({},"MultiHogar-MH")
-      }
-    })();
-  });
+  
 
 
   return (
