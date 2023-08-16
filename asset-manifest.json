@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/web-site-multihogar/static/css/main.fd908509.css",
-    "main.js": "/web-site-multihogar/static/js/main.c9c73d5d.js",
+    "main.js": "/web-site-multihogar/static/js/main.3af8216a.js",
     "static/media/space4.mp4": "/web-site-multihogar/static/media/space4.c434166a6d2666042413.mp4",
     "static/media/nasa-1lfI7wkGWZ4-unsplash.jpg": "/web-site-multihogar/static/media/nasa-1lfI7wkGWZ4-unsplash.9ced7203fafb34fddd44.jpg",
     "static/media/salii.jpg": "/web-site-multihogar/static/media/salii.725df47377e944c7c7fc.jpg",
@@ -10,10 +10,10 @@
     "static/media/bootstrap-icons.woff2?": "/web-site-multihogar/static/media/bootstrap-icons.6d63d0501e5ed7b79dab.woff2",
     "index.html": "/web-site-multihogar/index.html",
     "main.fd908509.css.map": "/web-site-multihogar/static/css/main.fd908509.css.map",
-    "main.c9c73d5d.js.map": "/web-site-multihogar/static/js/main.c9c73d5d.js.map"
+    "main.3af8216a.js.map": "/web-site-multihogar/static/js/main.3af8216a.js.map"
   },
   "entrypoints": [
     "static/css/main.fd908509.css",
-    "static/js/main.c9c73d5d.js"
+    "static/js/main.3af8216a.js"
   ]
 }
