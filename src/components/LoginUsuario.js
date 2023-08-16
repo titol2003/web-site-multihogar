@@ -38,7 +38,7 @@ function LoginUsuario() {
       if (token) {
         navigate("/precioAgente");
       }else{
-        window.history.pushState({},"MultiHogar-MH", "/login")
+        window.history.pushState({},"MultiHogar-MH")
       }
     })();
   });
