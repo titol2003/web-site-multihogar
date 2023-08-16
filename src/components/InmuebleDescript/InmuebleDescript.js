@@ -10,16 +10,14 @@ import Navbar from '../Navbar.js'
 const InmuebleDescript = () => {
 
     const {id} = useParams()
-    console.log(id)
     const [inmueble, setInmueble] = useState([])
     const [error, setError] = useState(null)
 
     useEffect(() => {
         async function fetchInmueble() {
           try {
-            const response = await axios.get(`http://localhost:8000/inmuebles/${id}`);
+            const response = await axios.get(`https://render-titol-nodeback.onrender.com/inmuebles/${id}`);
             setInmueble(response.data);
-            console.log(response)
           } catch (error) {
             setError(error.message);
             console.error(error.message);
@@ -30,7 +28,6 @@ const InmuebleDescript = () => {
     }, [id]);
 
     const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
   return (
@@ -123,7 +120,7 @@ const InmuebleDescript = () => {
                             </Col>
                             
                         </Row>
-                        <ModalUser show={show} handleClose={handleClose} correo={inmueble.agente?.email}/>
+                        <ModalUser show={show} setShow={setShow} correo={inmueble.agente?.email}/>
                     </div>
                 </main>
           

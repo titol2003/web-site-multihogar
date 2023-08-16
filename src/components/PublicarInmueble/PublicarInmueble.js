@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
@@ -6,26 +6,18 @@ import Row from "react-bootstrap/Row";
 import "./PublicarInmueble.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { AuthContext } from "../../context/AuthContext";
 
-const URII = 'http://localhost:8000/agente/'
+const URI = 'http://localhost:8000/inmuebles/'
 
 function PublicarInmueble() {
+
+  const {token} = useContext(AuthContext)
 
   const [showSuccessMessage, setShowSuccessMessage] = useState(false); 
   const [images, setImages] = useState([]);
   const navigate = useNavigate();
-  const URI = "http://localhost:8000/inmuebles/";
 
-
-  const [agentes, setAgente] = useState([])
-  useEffect( ()=>{
-    getAgentes()
-  }, [])
-
-  const getAgentes = async (id) => {
-    const res = await axios.get(URII)
-    setAgente(res.data)
-  }
 
   const imageshare = (files) => {
     var data = [];
@@ -39,6 +31,7 @@ function PublicarInmueble() {
     try {
       e.preventDefault();
       var data = new FormData(e.target);
+      data.append("token", token)
       await axios.post(URI, data, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -170,21 +163,6 @@ function PublicarInmueble() {
           <Form.Label>Agregar imagenes del inmueble</Form.Label>
           <Form.Control type="file" multiple name="images" />
         </Form.Group>
-
-
-        <Form.Control
-          as="select"
-          name="agentes"
-          className="mb-4"
-          aria-label="Default select example"
-        >
-          <option><b>Elegir Agente</b></option>
-          {agentes.map((agente, index) => (
-            <option key={index} data={agente.id} value={JSON.stringify(agente)}>
-            <b>{agente.name}</b>
-            </option>
-          ))}
-        </Form.Control>
 
         <div>
           <Button className="btn" variant="outline-success" type="submit">

@@ -3,7 +3,7 @@ import './Form.css'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-const URI = 'http://localhost:8000/agente/'
+const URI = 'https://render-titol-nodeback.onrender.com/agente/'
 const Form = () => {
 
   const [name, setName] = useState('')

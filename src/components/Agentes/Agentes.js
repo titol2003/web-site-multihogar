@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Agentes.css";
 import axios from "axios";
 
-const URI = 'http://localhost:8000/agente/'
+const URI = 'https://render-titol-nodeback.onrender.com/agente/'
 
 const Agentes = () => {
 

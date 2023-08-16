@@ -11,7 +11,7 @@ import {  AuthProvider } from "./context/AuthContext.js";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter>
+  <BrowserRouter basename='/web-site-multihogar'> 
     <AuthProvider>
       <App />
     </AuthProvider>

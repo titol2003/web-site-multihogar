@@ -43,7 +43,7 @@ function EditarInmueble() {
     const [showSuccessMessage, setShowSuccessMessage] = useState(false); // Nuevo estado
     const navigate = useNavigate() 
     const {id} =useParams()
-    const URI = 'http://localhost:8000/inmuebles/'
+    const URI = 'https://render-titol-nodeback.onrender.com/inmuebles/'
 
     const update = async (e) => {
         e.preventDefault(); // Evitar el comportamiento predeterminado del formulario
