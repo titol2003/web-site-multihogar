@@ -4,7 +4,7 @@ import "./Login.css";
 import { Link, useNavigate} from "react-router-dom";
 import {AuthContext} from "../context/AuthContext"
 
-const URI = 'https://render-titol-nodeback.onrender.com/'
+const URI = 'https://render-titol-nodeback.onrender.com'
 
 function LoginUsuario() {
 
@@ -33,15 +33,7 @@ function LoginUsuario() {
     }
     alert(message);
   }
-  useEffect(() => {
-    (() => {
-      if (token) {
-        navigate("/precioAgente");
-      }else{
-        window.history.pushState({},"MultiHogar-MH")
-      }
-    })();
-  });
+  
 
 
   return (
